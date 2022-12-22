@@ -1,0 +1,6 @@
+* Upstream doesn't included their LICENSE.txt file in the pypi version
+  of the package, but it's available here
+  https://github.com/dask/partd/blob/master/LICENSE.txt and is
+  included verbatim in /usr/share/doc/python{,3}-partd/copyright
+
+ -- Diane Trout <diane@ghic.org>, Wed, 21 Dec 2016 10:53:30 -0800

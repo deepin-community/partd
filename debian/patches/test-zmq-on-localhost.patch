@@ -1,0 +1,65 @@
+Author: Diane Trout <diane@ghic.org>
+Description: Debian builds environments frequently have limited network
+ access so for the zmq tests bind the server to localhost.
+
+--- a/partd/tests/test_zmq.py
++++ b/partd/tests/test_zmq.py
+@@ -13,7 +13,7 @@
+ 
+ 
+ def test_server():
+-    s = Server()
++    s = Server(hostname='localhost')
+     try:
+         s.start()
+         s.append({'x': b'abc', 'y': b'1234'})
+@@ -78,7 +78,7 @@
+ 
+ 
+ def test_partd_object():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.append({'x': b'Hello', 'y': b'abc'})
+         p.append({'x': b'World!', 'y': b'def'})
+ 
+@@ -87,7 +87,7 @@
+ 
+ 
+ def test_delete():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.append({'x': b'Hello'})
+         assert p.get('x') == b'Hello'
+         p.delete(['x'])
+@@ -95,27 +95,27 @@
+ 
+ 
+ def test_iset():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.iset('x', b'111')
+         p.iset('x', b'111')
+         assert p.get('x') == b'111'
+ 
+ 
+ def test_tuple_keys():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.append({('x', 'y'): b'123'})
+         assert p.get(('x', 'y')) == b'123'
+ 
+ 
+ def test_serialization():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.append({'x': b'123'})
+         q = pickle.loads(pickle.dumps(p))
+         assert q.get('x') == b'123'
+ 
+ 
+ def test_drop():
+-    with partd_server() as (p, server):
++    with partd_server(hostname='localhost') as (p, server):
+         p.append({'x': b'123'})
+         p.drop()
+         assert p.get('x') == b''

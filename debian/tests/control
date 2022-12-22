@@ -1,0 +1,14 @@
+Test-Command: set -e
+ ; for py in $(py3versions -r 2>/dev/null)
+ ; do pushd partd/tests
+ ; echo "Testing with $py:"
+ ; http_proxy= $py -m pytest -v
+ ; popd
+ ; done
+Depends: @,
+ python3-pytest,
+ python3-all,
+ python3-numpy,
+ python3-pandas,
+ python3-zmq,
+ python3-blosc,
