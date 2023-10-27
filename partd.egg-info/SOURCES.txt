@@ -8,7 +8,6 @@ versioneer.py
 partd/__init__.py
 partd/_version.py
 partd/buffer.py
-partd/compatibility.py
 partd/compressed.py
 partd/core.py
 partd/dict.py
