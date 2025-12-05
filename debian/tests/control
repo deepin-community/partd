@@ -1,5 +1,5 @@
 Test-Command: set -e
- ; for py in $(py3versions -r 2>/dev/null)
+ ; for py in $(py3versions -s 2>/dev/null)
  ; do pushd partd/tests
  ; echo "Testing with $py:"
  ; http_proxy= $py -m pytest -v
@@ -12,3 +12,4 @@ Depends: @,
  python3-pandas,
  python3-zmq,
  python3-blosc,
+ tzdata-legacy,

@@ -1,10 +1,17 @@
-Author: Diane Trout <diane@ghic.org>
-Description: Debian builds environments frequently have limited network
- access so for the zmq tests bind the server to localhost.
+From: Diane Trout <diane@ghic.org>
+Date: Sun, 2 Jun 2024 20:58:34 +0100
+Subject: Debian builds environments frequently have limited network
 
+access so for the zmq tests bind the server to localhost.
+---
+ partd/tests/test_zmq.py | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/partd/tests/test_zmq.py b/partd/tests/test_zmq.py
+index f78c7ee..9160d02 100644
 --- a/partd/tests/test_zmq.py
 +++ b/partd/tests/test_zmq.py
-@@ -13,7 +13,7 @@
+@@ -13,7 +13,7 @@ import shutil
  
  
  def test_server():
@@ -13,7 +20,7 @@ Description: Debian builds environments frequently have limited network
      try:
          s.start()
          s.append({'x': b'abc', 'y': b'1234'})
-@@ -78,7 +78,7 @@
+@@ -78,7 +78,7 @@ def partd_server(**kwargs):
  
  
  def test_partd_object():
@@ -22,7 +29,7 @@ Description: Debian builds environments frequently have limited network
          p.append({'x': b'Hello', 'y': b'abc'})
          p.append({'x': b'World!', 'y': b'def'})
  
-@@ -87,7 +87,7 @@
+@@ -87,7 +87,7 @@ def test_partd_object():
  
  
  def test_delete():
@@ -31,7 +38,7 @@ Description: Debian builds environments frequently have limited network
          p.append({'x': b'Hello'})
          assert p.get('x') == b'Hello'
          p.delete(['x'])
-@@ -95,27 +95,27 @@
+@@ -95,27 +95,27 @@ def test_delete():
  
  
  def test_iset():
